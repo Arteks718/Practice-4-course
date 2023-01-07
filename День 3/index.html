@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Third day</title>
+    <style>
+      * {
+        font-family: sans-serif;
+      }
+      table {
+        border-collapse: collapse;
+        width: inherit;
+      }
+      table,
+      td,
+      tr,
+      th {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid black;
+        font-size: 14pt;
+      }
+      caption {
+        font-size: 24px;
+        font-weight: 700;
+      }
+      th {
+        background-color: #a5b80083;
+      }
+      tr {
+        background-color: rgba(0, 255, 255, 0.184);
+      }
+      a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s linear;
+      }
+      a:hover {
+        color: rgb(161, 161, 161)
+      }
+      .delete {
+        background-color: rgba(156, 0, 0, 0.886);
+      }
+      #app {
+        width: 800px;
+        border: 1px solid #000;
+      }
+      .search {
+        display: block;
+        text-align: center;
+        margin: 10px;
+        font-size: 16pt;
+      }
+      .red {
+        color: red;
+      }
+      .black {
+        color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <table>
+        <caption>
+          Table of students
+        </caption>
+        <tr>
+          <th>ID</th>
+          <th>ПІБ</th>
+          <th>Група</th>
+          <th>Рік народження</th>
+          <th>Наявність ПР</th>
+          <th>Дія</th>
+        </tr>
+        <tr v-for="st in students">
+          <td>{{st.id}}</td>
+          <td :class="st.class">{{st.pib}}</td>
+          <td>{{st.group}}</td>
+          <td>{{st.yearOfBirth}}</td>
+          <td>
+            <input
+              type="checkbox"
+              name="isPassed"
+              v-if="st.isPassed==true"
+              checked
+            />
+            <input type="checkbox" name="isPassed" v-else />
+          </td>
+          <td class="delete">
+            <a href="#app" @click="deleteStudent(st.id)">Видалити</a>
+          </td>
+        </tr>
+      </table>
+      <div class="search">
+        <label for="">Введіть прізвище</label>
+        <input type="text" v-model="search" @input="searchStudents" />
+      </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
