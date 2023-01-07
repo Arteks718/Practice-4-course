@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Second day</title>
+    <style>
+      .red {
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+      .center {
+        width: 28%;
+        margin: 0 auto;
+        padding: 5px;
+      }
+      .filter{
+        border: 1px solid #000;
+      }
+      h3 {
+        margin-left: 30px;
+        font-style: italic;
+      }
+      button{
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center" id="app">
+      <div class="filter">
+        <input
+          type="radio"
+          name="author"
+          v-model="isAuthor"
+          value="isAuthor"
+        />Є автор
+        <input type="radio" name="author" v-model="isAuthor" value="" />Немає
+        автор
+        <br />
+        <div class="quote" v-for="qt in filteredQuotes">
+          <h2 v-bind:class="qt.quote.length > 40 ? 'red' : 'green'">
+            {{qt.quote}}
+          </h2>
+          <h3>{{qt.source}}</h3>
+        </div>
+      </div>
+
+      <button @click="sortBySource()">Сортувати</button>
+      <div class="quote" v-for="sq in sortedQuotes">
+        <h2>{{sq.quote}}</h2>
+        <h4 class="red">{{sq.source}}</h4>
+      </div>
+    </div>
+    <script src="./vue.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
