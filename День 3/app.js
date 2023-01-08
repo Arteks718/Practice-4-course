@@ -45,7 +45,19 @@ var app = new Vue({
   data: {
     students: arrayStudents,
     search: "",
-    test: "",
+    tempArray: [
+      {
+        id: "",
+        pib: "",
+        group: "",
+        yearOfBirth: "",
+        isPassed: false,
+        class: "black",
+      },
+    ],
+    age: "",
+    msg: "",
+    message: "",
   },
   methods: {
     deleteStudent: function (student) {
@@ -62,6 +74,46 @@ var app = new Vue({
         this.students.forEach((element) => {
           element.class = "black";
         });
+    },
+    openBlock: function (element) {
+      element = document.querySelector(".addStudent");
+      element.style.display = "block";
+    },
+    addNewStudent: function (element) {
+      this.tempArray.id = this.students.length + 1;
+      this.students.push(this.tempArray);
+      this.tempArray = {
+        id: "",
+        pib: "",
+        group: "",
+        yearOfBirth: "",
+        isPassed: false,
+        class: "black",
+      };
+      element = document.querySelector(".addStudent");
+      element.style.display = "none";
+    },
+  },
+});
+
+var vm = new Vue({
+  el: "#databinding",
+  data: {
+    num1: 100,
+    num2: 100,
+    total: "",
+    styleobj: {
+      width: "100px",
+      height: "100px",
+      backgroundColor: "red",
+    },
+  },
+  methods: {
+    changebgcolor: function () {
+      this.styleobj.backgroundColor = "green";
+    },
+    originalcolor: function () {
+      this.styleobj.backgroundColor = "red";
     },
   },
 });

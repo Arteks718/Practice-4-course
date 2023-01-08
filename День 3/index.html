@@ -4,62 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Third day</title>
-    <style>
-      * {
-        font-family: sans-serif;
-      }
-      table {
-        border-collapse: collapse;
-        width: inherit;
-      }
-      table,
-      td,
-      tr,
-      th {
-        padding: 10px;
-        text-align: center;
-        border: 1px solid black;
-        font-size: 14pt;
-      }
-      caption {
-        font-size: 24px;
-        font-weight: 700;
-      }
-      th {
-        background-color: #a5b80083;
-      }
-      tr {
-        background-color: rgba(0, 255, 255, 0.184);
-      }
-      a {
-        color: white;
-        text-decoration: none;
-        transition: 0.3s linear;
-      }
-      a:hover {
-        color: rgb(161, 161, 161)
-      }
-      .delete {
-        background-color: rgba(156, 0, 0, 0.886);
-      }
-      #app {
-        width: 800px;
-        border: 1px solid #000;
-      }
-      .search {
-        display: block;
-        text-align: center;
-        margin: 10px;
-        font-size: 16pt;
-      }
-      .red {
-        color: red;
-      }
-      .black {
-        color: black;
-      }
-    </style>
   </head>
   <body>
     <div id="app">
@@ -98,8 +44,58 @@
         <label for="">Введіть прізвище</label>
         <input type="text" v-model="search" @input="searchStudents" />
       </div>
+      <div class="newStudent">
+        <button id="addNewStudent" @click="openBlock">
+          Додати нового студента
+        </button>
+        <div class="addStudent">
+          <form action="">
+            <label for="pib">ПІБ студента</label>
+            <input type="text" name="pib" v-model.trim="tempArray.pib" />
+            <br />
+            <label for="group">Група</label>
+            <select name="group" id="" v-model="tempArray.group">
+              <option value="1">Група 1</option>
+              <option value="2">Група 2</option>
+              <option value="3">Група 3</option>
+            </select>
+            <br />
+            <label for="age">Рік народження</label>
+            <input
+              type="number"
+              name="age"
+              v-model.number="tempArray.yearOfBirth"
+            />
+            <br />
+            <label for="pr">Наявність ПР</label>
+            <input type="checkbox" name="pr" v-model="tempArray.isPassed" />
+            <br />
+            <button @click.prevent="addNewStudent">Добавити</button>
+          </form>
+        </div>
+      </div>
+      <div class="exercise">
+        <span>Enter Age:</span>
+        <input v-model.number="age" type="number" />
+        {{age}}
+        <br />
+        <span>Enter Message:</span>
+        <input v-model.lazy="msg" type="text" />
+        {{msg}}
+        <br />
+        <span>Enter Message:</span>
+        <input v-model.trim="message" type="text" />
+        {{message}}
+      </div>
     </div>
-    <script src="./vue.js"></script>
+    <div id="databinding">
+      <div
+        v-bind:style="styleobj"
+        @mouseover="changebgcolor"
+        @mouseout="originalcolor"
+      ></div>
+    </div>
+    <script src="../vue.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
